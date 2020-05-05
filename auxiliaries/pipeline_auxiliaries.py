@@ -182,7 +182,7 @@ def submit_pipeline_step_to_cluster(script_path, params_lists, tmp_dir, job_name
         f.write(cmds_as_str)
 
     # process_str = f'{q_submitter_script_path} {cmds_path} {tmp_dir} -q {queue_name} --cpu {num_of_cpus}'
-    process = [q_submitter_script_path, cmds_path, tmp_dir, '-q', queue_name, '--cpu', str(num_of_cpus)]
+    process = [q_submitter_script_path, cmds_path, tmp_dir, '-p', queue_name, '--cpu', str(num_of_cpus)]
     logger.info(f'Calling:\n{" ".join(process)}')
     # if True: return
     # don't overload SLURM with job submissions
