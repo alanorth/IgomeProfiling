@@ -151,7 +151,7 @@ def wait_for_results(script_name, path, num_of_expected_results, error_file_path
 
 
 def submit_pipeline_step_to_cluster(script_path, params_lists, tmp_dir, job_name, queue_name, verbose, new_line_delimiter='!@#',
-                         q_submitter_script_path='/bioseq/bioSequence_scripts_and_constants/q_submitter_power.py',
+                         q_submitter_script_path=global_params.qsub_script,
                          required_modules_as_list=None, num_of_cpus=1, executable='python', done_path=None):
     required_modules_as_str = 'cd-hit/4.6.8 mafft/7.313'
     if required_modules_as_list:
@@ -249,12 +249,17 @@ def run_step_locally(script_path, params_lists, tmp_dir, job_name, queue_name, v
     return example_cmd
 
 def submit_pipeline_step(script_path, params_lists, tmp_dir, job_name, queue_name, verbose, new_line_delimiter='!@#',
+<<<<<<< HEAD
                          q_submitter_script_path='/bioseq/bioSequence_scripts_and_constants/q_submitter_power.py',
                          required_modules_as_list=None, num_of_cpus=1, executable='python', done_path = None):
     if done_path and os.path.exists(done_path):
         process, example_cmd = create_command(**locals())
         logger.info(f'Skipping "{example_cmd}" as "{done_path}" exists')
         return example_cmd
+=======
+                         q_submitter_script_path=global_params.qsub_script,
+                         required_modules_as_list=None, num_of_cpus=1):
+>>>>>>> a43dc68... auxiliaries/pipeline_auxiliaries.py: Get qsub_script from global params
     if global_params.run_using_celery:
         return submit_pipeline_step_to_celery(**locals())
     if global_params.is_run_on_cluster:
