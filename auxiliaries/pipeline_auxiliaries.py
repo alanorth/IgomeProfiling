@@ -151,7 +151,7 @@ def wait_for_results(script_name, path, num_of_expected_results, error_file_path
 
 
 def submit_pipeline_step_to_cluster(script_path, params_lists, tmp_dir, job_name, queue_name, verbose, new_line_delimiter='!@#',
-                         q_submitter_script_path='/bioseq/bioSequence_scripts_and_constants/q_submitter_power.py',
+                         q_submitter_script_path=global_params.qsub_script,
                          required_modules_as_list=None, num_of_cpus=1):
     required_modules_as_str = 'cd-hit/4.6.8 mafft/7.313'
     if required_modules_as_list:
@@ -234,7 +234,7 @@ def run_step_locally(script_path, params_lists, tmp_dir, job_name, queue_name, v
     return example_cmd
 
 def submit_pipeline_step(script_path, params_lists, tmp_dir, job_name, queue_name, verbose, new_line_delimiter='!@#',
-                         q_submitter_script_path='/bioseq/bioSequence_scripts_and_constants/q_submitter_power.py',
+                         q_submitter_script_path=global_params.qsub_script,
                          required_modules_as_list=None, num_of_cpus=1):
     if global_params.run_using_celery:
         return submit_pipeline_step_to_celery(**locals())
