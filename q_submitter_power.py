@@ -21,8 +21,8 @@ def generate_sbatch_file(partition_name, tmp_dir, cmd, prefix_name, sbatch_file_
         sbatch_file_content += f'#SBATCH -n {CPUs}\n'
     sbatch_file_content += f'#SBATCH -p {partition_name}\n'
     sbatch_file_content += f'#SBATCH -J {prefix_name}\n'
-    sbatch_file_content += f'#SBATCH --error {tmp_dir}/slurm-%A-%j.err\n' # error log (slurm-job_name-job_id.err)
-    sbatch_file_content += f'#SBATCH --output {tmp_dir}/slurm-%A-%j.out\n'
+    sbatch_file_content += f'#SBATCH --error {tmp_dir}/slurm-{prefix_name}-%j.err\n' # error log (slurm-job_name-job_id.err)
+    sbatch_file_content += f'#SBATCH --output {tmp_dir}/slurm-{prefix_name}-%j.out\n'
     sbatch_file_content += f'hostname\n'
     sbatch_file_content += f'echo job_name: {prefix_name}\n'    
     sbatch_file_content += f'echo $SLURM_JOBID\n'
