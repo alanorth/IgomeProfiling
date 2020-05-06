@@ -177,7 +177,7 @@ def submit_pipeline_step_to_cluster(script_path, params_lists, tmp_dir, job_name
     cmds_as_str += '\t' + job_name + '\n'
     cmds_path = os.path.join(tmp_dir, f'{job_name}.cmds')
     if os.path.exists(cmds_path):
-        cmds_path = os.path.join(tmp_dir, f'{job_name}_{time()}.cmds')
+        cmds_path = os.path.join(tmp_dir, f'{job_name}_{time.time()}.cmds')
     with open(cmds_path, 'w') as f:
         f.write(cmds_as_str)
 
